@@ -1204,7 +1204,7 @@ async function gerarPDF(retornar = false) {
   }
 
   function addRow(label, value) {
-    const valStr = String(value || '—');
+    const valStr = String(value || '-');
     const wrapped = doc.splitTextToSize(valStr, lineW - 52);
     const rowH = Math.max(8, wrapped.length * 4.5 + 3);
     checkY(rowH);
@@ -1261,9 +1261,9 @@ async function gerarPDF(retornar = false) {
 
   // Quick stats on cover
   const stats = [
-    ['Frequência', d.freqTreino],
-    ['Adesão Treino', d.adesaoTreino],
-    ['Adesão Alimentar', d.alimentar],
+    ['Frequencia', d.freqTreino],
+    ['Adesao Treino', d.adesaoTreino],
+    ['Adesao Alimentar', d.alimentar],
     ['Nota da Semana', d.nota],
   ];
   const colW = lineW / 4;
@@ -1286,120 +1286,127 @@ async function gerarPDF(retornar = false) {
   doc.setFontSize(8);
   doc.setTextColor(...GRAY);
   doc.setFont('helvetica', 'normal');
-  doc.text('Documento gerado automaticamente · MG Coach Consultoria', 105, 285, { align: 'center' });
+  doc.text('Documento gerado automaticamente - MG Coach Consultoria', 105, 285, { align: 'center' });
 
   // Pages
   newPage();
-  addSection('📋 IDENTIFICAÇÃO');
+  addSection('IDENTIFICACAO');
   addRow('Aluno', d.nome);
-  addRow('Semana de referência', d.semana);
+  addRow('Semana de referencia', d.semana);
 
   y += 4;
-  addSection('🏋️ FREQUÊNCIA DE TREINO');
-  addRow('Sessões realizadas', d.freqTreino);
-  addRow('Observações', d.freqObs);
+  addSection('FREQUENCIA DE TREINO');
+  addRow('Sessoes realizadas', d.freqTreino);
+  addRow('Observacoes', d.freqObs);
 
   y += 4;
-  addSection('🏋️ ADESÃO AO TREINO');
-  addRow('% de adesão', d.adesaoTreino);
+  addSection('ADESAO AO TREINO');
+  addRow('% de adesao', d.adesaoTreino);
   addRow('Detalhes', d.treinoObs);
 
   y += 4;
-  addSection('📈 PROGRESSÃO DE CARGA');
-  addRow('% de progressão', d.progressao);
+  addSection('PROGRESSAO DE CARGA');
+  addRow('% de progressao', d.progressao);
   addRow('Detalhes', d.progressaoObs);
 
   y += 4;
-  addSection('⚡ DIFICULDADE DOS EXERCÍCIOS');
-  addRow('Nível de dificuldade', d.dificuldade);
+  addSection('DIFICULDADE DOS EXERCICIOS');
+  addRow('Nivel de dificuldade', d.dificuldade);
   addRow('Detalhes', d.dificuldadeObs);
 
   y += 4;
-  addSection('⏱️ TEMPO DA SESSÃO');
-  addRow('% de conclusão', d.tempoSessao);
+  addSection('TEMPO DA SESSAO');
+  addRow('% de conclusao', d.tempoSessao);
   addRow('Detalhes', d.tempoObs);
 
   y += 4;
-  addSection('🔄 RECUPERAÇÃO PÓS-TREINO');
-  addRow('Qualidade da recuperação', d.recuperacao);
+  addSection('RECUPERACAO POS-TREINO');
+  addRow('Qualidade da recuperacao', d.recuperacao);
   addRow('Detalhes', d.recuperacaoObs);
 
   y += 4;
-  addSection('🥗 PLANO ALIMENTAR');
-  addRow('% de adesão', d.alimentar);
+  addSection('PLANO ALIMENTAR');
+  addRow('% de adesao', d.alimentar);
   addRow('Detalhes', d.alimentarObs);
 
   y += 4;
-  addSection('🍽️ FOME E SACIEDADE');
+  addSection('FOME E SACIEDADE');
   addRow('Saciedade geral', d.saciedade);
   addRow('Detalhes', d.fomeObs);
 
   y += 4;
-  addSection('💧 HIDRATAÇÃO');
+  addSection('HIDRATACAO');
   addRow('% dos dias com meta atingida', d.hidratacao);
-  addRow('Observações', d.hidratacaoObs);
+  addRow('Observacoes', d.hidratacaoObs);
 
   y += 4;
-  addSection('🪞 MUDANÇA NO ESPELHO');
-  addRow('Percepção visual', d.espelho);
+  addSection('MUDANCA NO ESPELHO');
+  addRow('Percepcao visual', d.espelho);
   addRow('Detalhes', d.espelhoObs);
 
   y += 4;
-  addSection('⚖️ PESO NA BALANÇA');
+  addSection('PESO NA BALANCA');
   addRow('Peso atual', d.pesoAtual);
-  addRow('Tendência', d.pesoCurva);
-  addRow('Observações', d.pesoObs);
+  addRow('Tendencia', d.pesoCurva);
+  addRow('Observacoes', d.pesoObs);
 
   y += 4;
-  addSection('⚡ DISPOSIÇÃO GERAL');
-  addRow('Nível de disposição', d.disposicao);
+  addSection('DISPOSICAO GERAL');
+  addRow('Nivel de disposicao', d.disposicao);
   addRow('Detalhes', d.disposicaoObs);
 
   y += 4;
-  addSection('😴 CANSAÇO ACUMULADO');
-  addRow('Nível de cansaço/fadiga', d.cansaco);
+  addSection('CANSACO ACUMULADO');
+  addRow('Nivel de cansaco/fadiga', d.cansaco);
   addRow('Detalhes', d.cansacoObs);
 
   y += 4;
-  addSection('🌙 QUALIDADE DO SONO');
+  addSection('QUALIDADE DO SONO');
   addRow('Qualidade geral', d.sono);
-  addRow('Média de horas/noite', d.horasSono);
+  addRow('Media de horas/noite', d.horasSono);
   addRow('Detalhes', d.sonoObs);
 
   y += 4;
-  addSection('🧠 NÍVEL DE ESTRESSE');
-  addRow('Nível de estresse', d.estresse);
+  addSection('NIVEL DE ESTRESSE');
+  addRow('Nivel de estresse', d.estresse);
   addRow('Fontes principais', d.fontesEstresse);
   addRow('Detalhes', d.estresseObs);
 
   y += 4;
-  addSection('🔥 MOTIVAÇÃO GERAL');
-  addRow('Nível de motivação', d.motivacao);
+  addSection('MOTIVACAO GERAL');
+  addRow('Nivel de motivacao', d.motivacao);
   addRow('Detalhes', d.motivacaoObs);
 
   y += 4;
-  addSection('🗓️ CONSISTÊNCIA NOS HORÁRIOS');
-  addRow('% de consistência', d.horarios);
+  addSection('CONSISTENCIA NOS HORARIOS');
+  addRow('% de consistencia', d.horarios);
   addRow('Detalhes', d.horariosObs);
 
   y += 4;
-  addSection('💬 DÚVIDAS E RECADOS AO COACH');
+  addSection('DUVIDAS E RECADOS AO COACH');
   addRow('Mensagem', d.duvidas);
 
   y += 4;
-  addSection('⭐ NOTA GERAL DA SEMANA');
+  addSection('NOTA GERAL DA SEMANA');
   addRow('Nota', d.nota);
   addRow('Justificativa', d.notaObs);
 
   // Photo
   if (hasPhoto) {
     newPage();
-    addSection('📸 FOTO DE PROGRESSO');
+    addSection('FOTO DE PROGRESSO');
     checkY(120);
     try {
-      doc.addImage(document.getElementById('photoPreview').src, 'JPEG', marginL, y, lineW, 110);
+      const imgSrc = document.getElementById('photoPreview').src;
+      // Detectar formato real da imagem
+      let imgFormat = 'JPEG';
+      if (imgSrc.startsWith('data:image/png')) imgFormat = 'PNG';
+      else if (imgSrc.startsWith('data:image/webp')) imgFormat = 'WEBP';
+      doc.addImage(imgSrc, imgFormat, marginL, y, lineW, 110);
       y += 114;
-    } catch(e) {}
+    } catch(e) {
+      addRow('Obs', 'Foto nao foi possivel incluir no PDF');
+    }
   }
 
   if (retornar) return doc.output('blob');
@@ -1409,7 +1416,7 @@ async function gerarPDF(retornar = false) {
   doc.save(`feedback_${nome}_${semana}.pdf`);
 }
 
-// ── WHATSAPP ──
+// -- WHATSAPP --
 async function enviarWhatsApp() {
   const d = getData();
   const btn = document.querySelector('.btn-whatsapp');
